@@ -28,7 +28,7 @@ The following options are allowed:
 
 - `queueName`: The name of the rabbitmq queue to use listen in on the exchange. Must be unique. Default value is '' which means rabbitmq will auto generate a queue name for you that is unique.
 
-- `channelSeperator`: The delimiter between the prefix, the namespace name, and the room, the default is '#' for compatibility with socket.io-emitter, but if you don't use it,**you should change it because # is a wildcard character in rabbitmq which means you may get cross chatter with other rooms**.
+- `channelSeperator`: The delimiter between the prefix, the namespace name, and the room. The default is '#' for consistency with socket.io-emitter and backwards compatibility with older versions of `socket.io-amqp`. If you are using the library for the first time, **you should change it because # is a wildcard character in rabbitmq which means you may get cross chatter with other rooms**. If you have used the library previously and do not interact with the messages publshed to the exchanges created by `socket.io-amqp` based on routing key, you should also change the separator.
 
 - `onNamespaceInitializedCallback`: This is a callback function that is called everytime sockets.io opens a new namespace. Because a new namespace requires new queues and exchanges, you can get a callback to indicate the success or failure here. This callback should be in the form of function(err, nsp), where err is the error, and nsp is the namespace. If your code needs to wait until sockets.io is fully set up and ready to go, you can use this.
 
